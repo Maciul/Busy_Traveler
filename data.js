@@ -33,7 +33,7 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
     }
   })
 
-// CURRENCY CALCULATOR - change if possible -----
+// CURRENCY CALCULATOR - With if statements to prevent undefined -----
   $.get('http://api.fixer.io/latest?base='+countryFrom.currency+'&symbols='+countryTo.currency+'', function(currency) {
       $('section:first-of-type +section').empty()
     if (countryFrom.currency === countryTo.currency) {
@@ -44,7 +44,7 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
       $('section:first-of-type +section').append('1 '+countryFrom.currency+' gets you a whooping ' +currency.rates[countryTo.currency]+' '+countryTo.currency)
     }
   })
-// FINANCIAL Purchasing power parity stats -- how to display??
+// FINANCIAL Purchasing power parity stats -- will display as $100 is worth x amount??
   $.get('https://knoema.com/api/1.0/data/ICPR2011?Time=2011-2011&region='
   +countryFrom.id+','+countryTo.id+'&measures-components=1000270,1000260,1000360&economic-aggregates=1000190&Frequencies=A', function(financial) {
 
@@ -63,7 +63,7 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
     console.log(general)
     $('section:first-of-type').empty()
     $('section:first-of-type').append('<p>Country: '+general.name+'<p>')
-    $('section:first-of-type').append('<p> Official Name: '+general.altSpellings[lastElement]+'<p>')
+    $('section:first-of-type').append('<p>Official Name: '+general.altSpellings[lastElement]+'<p>')
     $('section:first-of-type').append('<p>Capital: '+general.capital+'<p>')
     $('section:first-of-type').append('<p>Region: '+general.subregion+'<p>')
     $('section:first-of-type').append('<p>Currency: '+general.currencies[0]+'<p>')
