@@ -34,8 +34,10 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
   })
 
 // CURRENCY CALCULATOR - With if statements to prevent undefined -----
-  $.get('http://api.fixer.io/latest?base='+countryFrom.currency+'&symbols='+countryTo.currency+'', function(currency) {
-      $('section:first-of-type +section').empty()
+console.log(countryFrom.currency, countryTo.currency);
+
+  $.get('http://api.fixer.io/latest?base='+countryFrom.currency+'&symbols='+countryTo.currency+'').done(function(currency) {
+    $('section:first-of-type +section').empty()
     if (countryFrom.currency === countryTo.currency) {
       $('section:first-of-type +section').append("Both countries have the same currency! No need to exchange!!!")
     } else if (currency.rates[countryTo.currency] === undefined){
@@ -43,7 +45,9 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
     }else {
       $('section:first-of-type +section').append('1 '+countryFrom.currency+' gets you a whooping ' +currency.rates[countryTo.currency]+' '+countryTo.currency)
     }
-  })
+  }).fail(function(error) {
+    $('section:first-of-type +section').append('No info')
+})
 // FINANCIAL Purchasing power parity stats -- will display as $100 is worth x amount??
   $.get('https://knoema.com/api/1.0/data/ICPR2011?Time=2011-2011&region='
   +countryFrom.id+','+countryTo.id+'&measures-components=1000270,1000260,1000360&economic-aggregates=1000190&Frequencies=A', function(financial) {
@@ -55,6 +59,7 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
     var restaurant = 100 - Math.round(((PPP[2].Value - PPP[5].Value) / PPP[2].Value * 100)-100);
 
     console.log("Alcohol will be " +alcohol+ " Food will be " +food+ " Hotels " +restaurant)
+    $('.comparison').empty()
     $('.comparison').append('<p>Alcohol n Tobacco ' +alcohol+ '</p>')
     $('.comparison').append('<p>Food ' +food+ '</p>')
     $('.comparison').append('<p> Hotels and Restaurant ' +restaurant+ '</p>')
@@ -74,23 +79,23 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
 
 
 // Call for SAFETY information
-  var tuGroup = {
-  "url": "https://api.tugroup.com/v1/travelsafe/countries/"+countryTo.A2,
-  "method": "GET",
-  "headers": {
-    "x-auth-api-key": "um59hvs6gx8z674reuqmtzna",
+var tuGroup = {
+"url": "https://api.tugroup.com/v1/travelsafe/countries/"+countryTo.A2,
+"method": "GET",
+"headers": {
+  "x-auth-api-key": "um59hvs6gx8z674reuqmtzna",
   }
 }
 
 $.ajax(tuGroup).done(function (safety) {
-
   console.log(safety);
-  console.log(safety.advisories.description)
+  $('section:last-of-type').empty()
+  $('section:last-of-type').append('<p>'+safety.advisories.description+'</p>')
   var regional = safety.advisories.regionalAdvisories;
 // Regional Advisories - loop to print category n description --
   regional.forEach(function(item, index){
-    console.log(item.category)
-    console.log(item.description)
+    $('section:last-of-type').append('<p>' +item.category+ '</p>')
+    $('section:last-of-type').append('<p>' +item.description+ '</p>')
 
     })
   })
