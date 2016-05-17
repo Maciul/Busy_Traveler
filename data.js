@@ -55,6 +55,9 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
     var restaurant = 100 - Math.round(((PPP[2].Value - PPP[5].Value) / PPP[2].Value * 100)-100);
 
     console.log("Alcohol will be " +alcohol+ " Food will be " +food+ " Hotels " +restaurant)
+    $('.comparison').append('<p>Alcohol n Tobacco ' +alcohol+ '</p>')
+    $('.comparison').append('<p>Food ' +food+ '</p>')
+    $('.comparison').append('<p> Hotels and Restaurant ' +restaurant+ '</p>')
   })
 //GENERAL country information - country name / official name / capital / subregion
   $.get('https://restcountries.eu/rest/v1/alpha/'+countryTo.A2, function(general) {
