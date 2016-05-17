@@ -1,9 +1,8 @@
 $(document).ready(function() {
 var countryTo = {}
 var countryFrom = {}
-var specific;
-var specific2;
-
+// var specific;
+// var specific2;
 
 $.get('https://restcountries.eu/rest/v1/all', function(countryList) {
   countryList.forEach(function(item, index) {
@@ -22,46 +21,43 @@ $('button').click(function(event) {
 console.log(specific)
 console.log(specific2)
 
-
-$.get('https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+specific2+'', function(data) {
-  console.log(data)
-  countryTo.A2 = data[0].alpha2Code;
-  countryTo.currency = data[0].currencies[0];
-  countryFrom.A2 = data[1].alpha2Code;
-  countryFrom.currency = data[1].currencies[0];
-})
-
-$.get("https://knoema.com/api/1.0/meta/dataset/WBWDIGDF/regions", function(region) {
-  // var regionLog = region.items
-  var regionLog = region[0].regions;
-  console.log(region)
-  console.log(region[0].regions[0].regionId)
-  regionLog.forEach(function(item, index) {
-    if (item.regionId === specific) {
-      countryTo.id = item.key
+$.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+specific2+'' ),
+        $.ajax('https://knoema.com/api/1.0/meta/dataset/ICPR2011/dimension/region' ) ).done(function(data, region) {
+// Get the country a2 code and currency //
+  countryTo.A2 = data[0][0].alpha2Code;
+  countryTo.currency = data[0][0].currencies[0];
+  countryFrom.A2 = data[0][1].alpha2Code;
+  countryFrom.currency = data[0][1].currencies[0];
+console.log(region)
+// Get the 7-digit code based on specific countries picked //
+   region[0].items.forEach(function(item, index) {
+    if (item.fields.regionid === specific) {
+      countryTo.id = item.key;
     }
-    if (item.regionId === specific2) {
-      countryFrom.id = item.key
+    if (item.fields.regionid === specific2) {
+      countryFrom.id = item.key;
     }
   })
-  console.log(countryTo)
-  console.log(countryFrom)
+  console.log(countryTo.id)
+  console.log(countryFrom.id)
+
+  $.get('https://knoema.com/api/1.0/data/ICPR2011?Time=2011-2011&region='+countryFrom.id+','+countryTo.id+'&measures-components=1000270,1000260,1000360&economic-aggregates=1000190&Frequencies=A', function(financial) {
+
+        console.log(financial)
+        var alcohol = financial.data[0].Value - financial.data[3].Value;
+        var food = financial.data[1].Value - financial.data[4].Value;
+        var restaurant = financial.data[2].Value - financial.data[5].Value
+
+        console.log(alcohol, food, restaurant)
   })
+
+
+    })
   })
 })
 
 
 
-
-// // Creating list of countries in the dropdown menu ---
-// $.get("https://knoema.com/api/1.0/meta/dataset/ICPR2011/dimension/region", function(region) {
-//     var regionLog = region;
-//     len = regionLog.items.length
-//     for (var i = 13; i < len; i++) {
-//       $('select').append('<option>'+ regionLog.items[i].name + '</option>')
-//     }
-//
-// })
 // //General Country Info --- Need regular Country Name String ----
 // $.get("https://restcountries.eu/rest/v1/name/"+"china", function(country) {
 //
