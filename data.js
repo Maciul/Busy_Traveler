@@ -12,8 +12,10 @@ $('button').click(function(event) {
   event.preventDefault()
   specific = $('select.to option:selected').val()
   specific2 = $('select.from option:selected').val()
-
-
+  $('.comparison').empty()
+  $('section:first-of-type +section').empty()
+  $('section:first-of-type').empty()
+  $('section:last-of-type').empty()
 // Getting values for calling different API's //
 $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+specific2+'' ),
         $.ajax('https://knoema.com/api/1.0/meta/dataset/ICPR2011/dimension/region' ) ).done(function(data, region) {
@@ -34,10 +36,7 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
   })
 
 // CURRENCY CALCULATOR - With if statements to prevent undefined -----
-console.log(countryFrom.currency, countryTo.currency);
-
   $.get('http://api.fixer.io/latest?base='+countryFrom.currency+'&symbols='+countryTo.currency+'').done(function(currency) {
-    $('section:first-of-type +section').empty()
     if (countryFrom.currency === countryTo.currency) {
       $('section:first-of-type +section').append("Both countries have the same currency! No need to exchange!!!")
     } else if (currency.rates[countryTo.currency] === undefined){
@@ -51,25 +50,25 @@ console.log(countryFrom.currency, countryTo.currency);
 // FINANCIAL Purchasing power parity stats -- will display as $100 is worth x amount??
   $.get('https://knoema.com/api/1.0/data/ICPR2011?Time=2011-2011&region='
   +countryFrom.id+','+countryTo.id+'&measures-components=1000270,1000260,1000360&economic-aggregates=1000190&Frequencies=A', function(financial) {
-
-    PPP = financial.data //Purchasing Power Parity //
-
-    var alcohol =100 -  Math.round(((PPP[0].Value - PPP[3].Value) / PPP[0].Value) *100)-100;
-    var food = 100 - Math.round(((PPP[1].Value - PPP[4].Value) / PPP[1].Value * 100)-100);
-    var restaurant = 100 - Math.round(((PPP[2].Value - PPP[5].Value) / PPP[2].Value * 100)-100);
-
-    console.log("Alcohol will be " +alcohol+ " Food will be " +food+ " Hotels " +restaurant)
-    $('.comparison').empty()
-    $('.comparison').append('<p>Alcohol n Tobacco ' +alcohol+ '</p>')
-    $('.comparison').append('<p>Food ' +food+ '</p>')
-    $('.comparison').append('<p> Hotels and Restaurant ' +restaurant+ '</p>')
+    console.log(financial);
+        console.log(financial.data.length)
+      PPP = financial.data //Purchasing Power Parity //
+      if (PPP.length < 6) {
+        $('.comparison').append('<p>Even World Bank does not have enought data to figure this out!</p>')
+      } else {
+      var alcohol = Math.round(100 / (1 - ((PPP[0].Value - PPP[3].Value) / PPP[0].Value)))
+      var food = Math.round(100 / (1 - ((PPP[1].Value - PPP[4].Value) / PPP[1].Value)));
+      var restaurant = Math.round(100 / (1 - ((PPP[2].Value - PPP[5].Value) / PPP[2].Value)));
+      $('.comparison').append('<p>Alcohol n Tobacco ' +alcohol+ '</p>')
+      $('.comparison').append('<p>Food ' +food+ '</p>')
+      $('.comparison').append('<p> Hotels and Restaurant ' +restaurant+ '</p>')
+    }
   })
 //GENERAL country information - country name / official name / capital / subregion
   $.get('https://restcountries.eu/rest/v1/alpha/'+countryTo.A2, function(general) {
 
     var lastElement = general.altSpellings.length - 1;
     console.log(general)
-    $('section:first-of-type').empty()
     $('section:first-of-type').append('<p>Country: '+general.name+'<p>')
     $('section:first-of-type').append('<p>Official Name: '+general.altSpellings[lastElement]+'<p>')
     $('section:first-of-type').append('<p>Capital: '+general.capital+'<p>')
@@ -88,8 +87,6 @@ var tuGroup = {
 }
 
 $.ajax(tuGroup).done(function (safety) {
-  console.log(safety);
-  $('section:last-of-type').empty()
   $('section:last-of-type').append('<p>'+safety.advisories.description+'</p>')
   var regional = safety.advisories.regionalAdvisories;
 // Regional Advisories - loop to print category n description --
