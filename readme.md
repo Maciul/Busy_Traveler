@@ -1,4 +1,4 @@
-https://knoema.com/api/1.0/
+<!-- https://knoema.com/api/1.0/
 meta/dataset/ICPR2011/  - main database
 meta/dataset/ICPR2011/dimension/region  - regions
 
@@ -13,11 +13,4 @@ KNOEMA
 -- Comparative Prices
 -- Need API specific 7-digit id
 
-
-
-
-
-
-
-
-currencylayer: 1198f5e456d7b4caaef367b3abf0a8f7
+currencylayer: 1198f5e456d7b4caaef367b3abf0a8f7 -->

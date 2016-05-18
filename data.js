@@ -20,8 +20,10 @@ $('button').click(function(event) {
 $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+specific2+'' ),
         $.ajax('https://knoema.com/api/1.0/meta/dataset/ICPR2011/dimension/region' ) ).done(function(data, region) {
 // Get the country a2 code and currency //
+
   countryTo.A2 = data[0][0].alpha2Code;
   countryTo.currency = data[0][0].currencies[0];
+  countryTo.country = data[0][0].name
   countryFrom.A2 = data[0][1].alpha2Code;
   countryFrom.currency = data[0][1].currencies[0];
 
@@ -92,9 +94,24 @@ $.ajax(tuGroup).done(function (safety) {
   regional.forEach(function(item, index){
     $('section:last-of-type').append('<p>' +item.category+ '</p>')
     $('section:last-of-type').append('<p>' +item.description+ '</p>')
-
     })
   })
+$.get('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=ad5b2954605cfc1be6f1514e5f65f6de&text='+countryTo.country+'%2C+architecture%2C+beautiful%2C+landscape&per_page=10&page=1&format=json&nojsoncallback=1', function(result){
+  console.log(result)
+  var pics = result.photos.photo;
+
+  $('.pics').append('<img src=https://farm'+pics[0].farm+'.staticflickr.com/'+pics[0].server+'/'+pics[0].id+'_'+pics[0].secret+'.jpg</img>')
+  $('.pics').append('<img src=https://farm'+pics[3].farm+'.staticflickr.com/'+pics[3].server+'/'+pics[3].id+'_'+pics[3].secret+'.jpg</img>')
+  $('.pics').append('<img src=https://farm'+pics[7].farm+'.staticflickr.com/'+pics[7].server+'/'+pics[7].id+'_'+pics[7].secret+'.jpg</img>')
+})
+
 })
 })
 })
+
+//
+// Key:
+// 6046bd3b0b0209c90dcfb95e499d4248
+//
+// Secret:
+// a5e4d776823b2fe3
