@@ -36,7 +36,7 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
   })
 
 // CURRENCY CALCULATOR - With if statements to prevent undefined -----
-  $.get('http://api.fixer.io/latest?base='+countryFrom.currency+'&symbols='+countryTo.currency+'').done(function(currency) {
+  $.get('https://api.fixer.io/latest?base='+countryFrom.currency+'&symbols='+countryTo.currency+'').done(function(currency) {
     if (countryFrom.currency === countryTo.currency) {
       $('section:first-of-type +section').append("Both countries have the same currency! No need to exchange!!!")
     } else if (currency.rates[countryTo.currency] === undefined){
@@ -45,7 +45,7 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
       $('section:first-of-type +section').append('1 '+countryFrom.currency+' gets you a whooping ' +currency.rates[countryTo.currency]+' '+countryTo.currency)
     }
   }).fail(function(error) {
-    $('section:first-of-type +section').append('No info')
+    $('section:first-of-type +section').append('Unfortunately, I cannot get you this currency exchange unless I pay $100 a month! ;/')
 })
 // FINANCIAL Purchasing power parity stats -- will display as $100 is worth x amount??
   $.get('https://knoema.com/api/1.0/data/ICPR2011?Time=2011-2011&region='
@@ -85,7 +85,6 @@ var tuGroup = {
   "x-auth-api-key": "um59hvs6gx8z674reuqmtzna",
   }
 }
-
 $.ajax(tuGroup).done(function (safety) {
   $('section:last-of-type').append('<p>'+safety.advisories.description+'</p>')
   var regional = safety.advisories.regionalAdvisories;
