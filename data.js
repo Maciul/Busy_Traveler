@@ -96,7 +96,7 @@ $.ajax(tuGroup).done(function (safety) {
     $('section:last-of-type').append('<p>' +item.description+ '</p>')
     })
   })
-$.get('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=ad5b2954605cfc1be6f1514e5f65f6de&text='+countryTo.country+'%2C+architecture%2C+beautiful%2C+landscape&per_page=10&page=1&format=json&nojsoncallback=1', function(result){
+$.get('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=6046bd3b0b0209c90dcfb95e499d4248&text='+countryTo.country+'%2C+architecture%2C+beautiful%2C+landscape&per_page=10&page=1&format=json&nojsoncallback=1', function(result){
   console.log(result)
   var pics = result.photos.photo;
 
