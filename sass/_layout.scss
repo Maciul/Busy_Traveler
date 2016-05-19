@@ -32,8 +32,8 @@ body {
       text-align: center;
     }
     div h1 img {
-      width: 10%;
-      height: 30%;
+      width: 100px;
+      height: 100px;
     }
   }
   .extra{
@@ -61,12 +61,28 @@ body {
   .alcohol {
     display: flex;
     justify-content: space-around;
+    align-items: center;
     img {
       height: 60px;
       width: 60px;
     }
-    h2 {
-      margin: auto;
+  }
+  .food {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    img {
+      height: 60px;
+      width: 60px;
+    }
+  }
+  .hotels {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    img {
+      height: 60px;
+      width: 60px;
     }
   }
 }

@@ -51,8 +51,8 @@ body {
   body .general div {
     text-align: center; }
   body .general div h1 img {
-    width: 10%;
-    height: 30%; }
+    width: 100px;
+    height: 100px; }
   body .extra {
     display: flex;
     justify-content: space-around; }
@@ -72,9 +72,22 @@ body {
       padding: 5px; }
   body .alcohol {
     display: flex;
-    justify-content: space-around; }
+    justify-content: space-around;
+    align-items: center; }
     body .alcohol img {
       height: 60px;
       width: 60px; }
-    body .alcohol h2 {
-      margin: auto; }
+  body .food {
+    display: flex;
+    justify-content: space-around;
+    align-items: center; }
+    body .food img {
+      height: 60px;
+      width: 60px; }
+  body .hotels {
+    display: flex;
+    justify-content: space-around;
+    align-items: center; }
+    body .hotels img {
+      height: 60px;
+      width: 60px; }
