@@ -1,93 +1,124 @@
 @import url(https://fonts.googleapis.com/css?family=Volkhov:400,700);
 @import url(https://fonts.googleapis.com/css?family=Almendra:400,700italic,700,400italic);
 @import url(https://fonts.googleapis.com/css?family=Martel+Sans);
-html {
-  font-size: 1em; }
-
-body {
-  background-color: white;
-  font-weight: 400;
-  line-height: 1.45;
-  color: #333; }
-
-p {
-  margin-bottom: 1.3em; }
-
 h1 {
-  font-size: 3.998em; }
-
-h2 {
-  font-size: 2.827em; }
-
-h3 {
-  font-size: 1.999em; }
-
-h4 {
-  font-size: 1.414em; }
-
-small, .font_small {
-  font-size: 0.707em; }
+  font-size: 4em;
+  margin: 0 0 0 0; }
 
 header {
-  background-color: lightblue;
-  margin-bottom: 20px; }
-  header form {
-    display: inline-block; }
-    header form select {
-      box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px; }
-    header form label {
-      display: block; }
-
-body {
-  font-size: 100%;
-  font-family: 'Martel Sans', sans-serif;
-  width: 100%; }
-  body h1, body h2, body h5, body h6 {
-    font-family: 'Volkhov', serif; }
-  body h3, body h4 {
-    font-family: 'Almendra', serif; }
-  body section {
-    margin-bottom: 10px; }
-  body .general div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+  background-image: url(images/world.gif); }
+  header h1 {
+    font-family: 'Almendra', serif;
+    color: navyblue;
+    float: left;
+    margin-top: -20%; }
+  header .styledForm select {
+    border: 0;
+    font-size: 24px;
+    text-align: center;
+    text-align-last: center;
+    margin: 30px; }
+  header .styledForm option {
     text-align: center; }
-  body .general div h1 img {
-    width: 100px;
-    height: 100px; }
-  body .extra {
+  header .styledForm button {
+    margin: 0 auto;
+    margin-top: 20px;
+    display: block;
+    border-radius: 15px;
+    font-family: Georgia;
+    color: #ffffff;
+    font-size: 25px;
+    background: #0ceb5a;
+    padding: 20px 40px 20px 40px;
+    border: solid #000000 2px;
+    text-decoration: none; }
+    header .styledForm button:hover {
+      background: #df0;
+      text-decoration: none;
+      color: black; }
+
+.big-icon {
+  height: 120px;
+  width: 120px; }
+
+.icon {
+  height: 60px;
+  width: 60px; }
+
+section {
+  padding-top: 10px;
+  padding-bottom: 50px;
+  border-bottom: 5px solid black; }
+
+.general {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  margin-top: 40px; }
+
+main {
+  display: flex;
+  flex-direction: column; }
+  main .gMain {
     display: flex;
-    justify-content: space-around; }
-    body .extra div {
-      display: flex; }
-    body .extra img {
-      align-self: center;
-      padding: 10px;
-      height: 60px;
-      width: 60px; }
-  body .pics {
+    justify-content: center; }
+  main .gExtra {
     display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-top: 30px; }
+  main .rate {
+    width: 60%;
+    border: 2px solid black;
+    color: black;
+    background-color: gold;
+    margin: 0 auto; }
+  main .pictures {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
     justify-content: space-around; }
-    body .pics img {
-      max-width: 33%;
-      border: 1px solid grey;
+  main .pics {
+    display: flex;
+    justify-content: space-around;
+    text-align: center; }
+    main .pics img {
+      max-width: 30%;
+      border: 1px solid black;
       padding: 5px; }
-  body .alcohol {
+  main .exchange {
+    text-align: center; }
+  main .comparison {
+    text-align: center; }
+  main .hotels {
     display: flex;
     justify-content: space-around;
-    align-items: center; }
-    body .alcohol img {
-      height: 60px;
-      width: 60px; }
-  body .food {
+    border: 1px solid black;
+    padding-top: 5px; }
+  main .food {
     display: flex;
     justify-content: space-around;
-    align-items: center; }
-    body .food img {
-      height: 60px;
-      width: 60px; }
-  body .hotels {
+    border: 1px solid black;
+    padding-top: 5px; }
+  main .alcohol {
     display: flex;
     justify-content: space-around;
-    align-items: center; }
-    body .hotels img {
-      height: 60px;
-      width: 60px; }
+    border: 1px solid black;
+    padding-top: 5px; }
+  main .safety {
+    text-align: center; }
+    main .safety p {
+      width: 60%;
+      text-align: center;
+      margin: 0 auto; }
+  main .money {
+    width: 60%;
+    margin: 0 auto;
+    text-align: center; }

@@ -1,88 +1,154 @@
 header {
-  background-color: lightblue;
-  margin-bottom: 20px;
-  form {
-    display: inline-block;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+  background-image: url(images/world.gif);
+
+  h1 { font-family: 'Almendra', serif;
+    color: navyblue;
+    float: left;
+    margin-top: -20%
+  }
+//   .video {
+//     height: 100%;
+//     overflow: hidden;
+//     pointer-events: none;
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     z-index: -1;
+// }
+  .styledForm {
 
     select {
-    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+      border: 0;
+      font-size: 24px;
+      text-align: center;
+      text-align-last: center;
+      margin: 30px;
     }
-    label {
+    option {
+      text-align: center;
+
+    }
+    button {
+      margin: 0 auto;
+      margin-top: 20px;
       display: block;
+      border-radius: 15px;
+      font-family: Georgia;
+      color: #ffffff;
+      font-size: 25px;
+      background: #0ceb5a;
+      padding: 20px 40px 20px 40px;
+      border: solid #000000 2px;
+      text-decoration: none;
+      &:hover {
+        background: #df0;
+        text-decoration: none;
+        color: black;
+      }
     }
   }
 }
-body {
-  font-size: 100%;
-  font-family: 'Martel Sans', sans-serif;
-  width: 100%;
+.big-icon {
+  height: 120px;
+  width: 120px;
+}
+.icon {
+  height: 60px;
+  width: 60px;
+}
+section {
+  padding-top: 10px;
+  padding-bottom: 50px;
+  border-bottom: 5px solid black;
+}
 
-  h1, h2, h5, h6 {
-  font-family: 'Volkhov', serif;
-  }
-  h3, h4 {
-    font-family: 'Almendra', serif;
-  }
-  section {
-    margin-bottom: 10px;
+.general {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  margin-top: 40px;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  .gMain {
+    display: flex;
+    justify-content: center;
   }
 
-  .general {
-    div {
-      text-align: center;
-    }
-    div h1 img {
-      width: 100px;
-      height: 100px;
-    }
-  }
-  .extra{
+  .gExtra {
     display: flex;
     justify-content: space-around;
-    div {
-      display: flex;
-    }
-    img {
-      align-self: center;
-      padding: 10px;
-      height: 60px;
-      width: 60px;
-    }
+    text-align: center;
+    margin-top: 30px;
+  }
+  .rate {
+    width: 60%;
+    border: 2px solid black;
+    color: black;
+    background-color: gold;
+    margin: 0 auto;
+
+  }
+  .pictures {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
   .pics {
     display: flex;
     justify-content: space-around;
+    text-align: center;
     img {
-      max-width: 33%;
-      border: 1px solid grey;
+      max-width: 30%;
+      border: 1px solid black;
       padding: 5px;
     }
   }
-  .alcohol {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    img {
-      height: 60px;
-      width: 60px;
-    }
+  .exchange {
+    text-align: center;
   }
-  .food {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    img {
-      height: 60px;
-      width: 60px;
-    }
+  .comparison {
+    text-align: center;
   }
   .hotels {
     display: flex;
     justify-content: space-around;
-    align-items: center;
-    img {
-      height: 60px;
-      width: 60px;
+    border: 1px solid black;
+    padding-top: 5px;
+  }
+  .food {
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid black;
+    padding-top: 5px;
+  }
+  .alcohol {
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid black;
+    padding-top: 5px;
+  }
+  .safety {
+    text-align: center;
+    p {
+      width: 60%;
+      text-align: center;
+      margin: 0 auto;
     }
+  }
+  .money {
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
   }
 }
