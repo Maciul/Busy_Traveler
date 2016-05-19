@@ -8,20 +8,8 @@ header {
   background-image: url(images/world.gif);
 
   h1 { font-family: 'Almendra', serif;
-    color: navyblue;
-    float: left;
-    margin-top: -20%
-  }
-//   .video {
-//     height: 100%;
-//     overflow: hidden;
-//     pointer-events: none;
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     z-index: -1;
-// }
+
+}
   .styledForm {
 
     select {
@@ -77,8 +65,12 @@ section {
   margin-top: 40px;
 }
 main {
+  display: none;
   display: flex;
   flex-direction: column;
+  p {
+    font-family: 'Martel Sans', sans-serif;
+  }
   .gMain {
     display: flex;
     justify-content: center;

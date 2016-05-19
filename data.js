@@ -6,6 +6,8 @@ $.get('https://restcountries.eu/rest/v1/all', function(countryList) {
   countryList.forEach(function(item, index) {
     $('select').append('<option value='+item.alpha2Code+'>'+ item.name + '</option>')
   })
+  $('#travelFrom option[value="US"]').insertBefore('#travelFrom option[value="AF"]');
+
 })
 //Button clicked - values extracted (2 letter country codes)
 $('button').click(function(event) {
