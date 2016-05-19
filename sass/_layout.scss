@@ -1,17 +1,27 @@
+body {
+  margin: 0px;
+}
+
+h1, h2 { font-family: 'Almendra', serif;
+}
+h3, h4, h5, h6 {
+  font-family: 'Volkhov', serif;
+}
+
 header {
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   margin-bottom: 40px;
   background-image: url(images/world.gif);
 
-  h1 { font-family: 'Almendra', serif;
 
-}
+  #loading {
+    display:none;
+  }
+
   .styledForm {
-
     select {
       border: 0;
       font-size: 24px;
@@ -35,6 +45,7 @@ header {
       padding: 20px 40px 20px 40px;
       border: solid #000000 2px;
       text-decoration: none;
+      transition: all 0.3s;
       &:hover {
         background: #df0;
         text-decoration: none;
@@ -52,9 +63,9 @@ header {
   width: 60px;
 }
 section {
-  padding-top: 10px;
-  padding-bottom: 50px;
-  border-bottom: 5px solid black;
+  height: 100%;
+  width: 100%;
+  border-bottom: 2px solid black;
 }
 
 .general {
@@ -108,9 +119,15 @@ main {
   }
   .exchange {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   .comparison {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   .hotels {
     display: flex;
@@ -132,15 +149,20 @@ main {
   }
   .safety {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;;
     p {
       width: 60%;
       text-align: center;
       margin: 0 auto;
     }
+
   }
   .money {
     width: 60%;
     margin: 0 auto;
     text-align: center;
   }
+
 }

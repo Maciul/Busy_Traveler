@@ -1,8 +1,0 @@
-[debug] ----------------------------------------------------------------------
-[debug] Command:      /usr/local/Cellar/node/5.10.1/bin/node /usr/local/bin/firebase deploy
-[debug] Platform:     darwin
-[debug] Node Version: v5.10.1
-[debug] Time:         Thu May 19 2016 14:06:11 GMT-0600 (MDT)
-[debug] ----------------------------------------------------------------------
-[debug] 
-[debug] >>> HTTP REQUEST GET https://admin.firebase.com/firebase/pawel-galvanize-q1project/token?token=XXX 

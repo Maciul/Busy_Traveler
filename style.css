@@ -5,16 +5,24 @@ h1 {
   font-size: 4em;
   margin: 0 0 0 0; }
 
+body {
+  margin: 0px; }
+
+h1, h2 {
+  font-family: 'Almendra', serif; }
+
+h3, h4, h5, h6 {
+  font-family: 'Volkhov', serif; }
+
 header {
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   margin-bottom: 40px;
   background-image: url(images/world.gif); }
-  header h1 {
-    font-family: 'Almendra', serif; }
+  header #loading {
+    display: none; }
   header .styledForm select {
     border: 0;
     font-size: 24px;
@@ -34,7 +42,8 @@ header {
     background: #0ceb5a;
     padding: 20px 40px 20px 40px;
     border: solid #000000 2px;
-    text-decoration: none; }
+    text-decoration: none;
+    transition: all 0.3s; }
     header .styledForm button:hover {
       background: #df0;
       text-decoration: none;
@@ -49,9 +58,9 @@ header {
   width: 60px; }
 
 section {
-  padding-top: 10px;
-  padding-bottom: 50px;
-  border-bottom: 5px solid black; }
+  height: 100%;
+  width: 100%;
+  border-bottom: 2px solid black; }
 
 .general {
   display: flex;
@@ -94,9 +103,15 @@ main {
       border: 1px solid black;
       padding: 5px; }
   main .exchange {
-    text-align: center; }
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
   main .comparison {
-    text-align: center; }
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; }
   main .hotels {
     display: flex;
     justify-content: space-around;
@@ -113,7 +128,10 @@ main {
     border: 1px solid black;
     padding-top: 5px; }
   main .safety {
-    text-align: center; }
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; }
     main .safety p {
       width: 60%;
       text-align: center;

@@ -7,11 +7,12 @@ $.get('https://restcountries.eu/rest/v1/all', function(countryList) {
     $('select').append('<option value='+item.alpha2Code+'>'+ item.name + '</option>')
   })
   $('#travelFrom option[value="US"]').insertBefore('#travelFrom option[value="AF"]');
-
+  $('main').hide()
 })
 //Button clicked - values extracted (2 letter country codes)
 $('button').click(function(event) {
   event.preventDefault()
+  $('#loading').show()
   specific = $('select.to option:selected').val()
   specific2 = $('select.from option:selected').val()
 // Empty elements once new click happens
@@ -66,15 +67,18 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
   $.get('https://knoema.com/api/1.0/data/ICPR2011?Time=2011-2011&region='
   +countryFrom.id+','+countryTo.id+'&measures-components=1000270,1000260,1000360&economic-aggregates=1000190&Frequencies=A', function(financial) {
       var PPP = financial.data //Purchasing Power Parity //
-      var alcohol = Math.round(100 / (1 - ((PPP[0].Value - PPP[3].Value) / PPP[0].Value)))
-      var food =    Math.round(100 / (1 - ((PPP[1].Value - PPP[4].Value) / PPP[1].Value)));
-      var hotels =  Math.round(100 / (1 - ((PPP[2].Value - PPP[5].Value) / PPP[2].Value)));
-
+      console.log(PPP)
       if (PPP.length < 6) {
+        $('.comparison').append('<div><img class="icon" src="images/money.svg"></div>')
         $('.comparison').append('<div class="money"></div>')
         $('.money').append('<h3> Exchange rates are cool but based on some crazy data collecting and intense algorithms we can tell you how much 100'+countryFrom.currency+' will be worth in '+countryTo.country+'</h3>')
         $('.money').append('<p>Or not.... received insufficient data from WORLD BANK to make this happen!!!</p>')
       } else {
+        var alcohol = Math.round(100 / (1 - ((PPP[0].Value - PPP[3].Value) / PPP[0].Value)))
+        var food =    Math.round(100 / (1 - ((PPP[1].Value - PPP[4].Value) / PPP[1].Value)));
+        var hotels =  Math.round(100 / (1 - ((PPP[2].Value - PPP[5].Value) / PPP[2].Value)));
+
+        $('.comparison').append('<div><img class="icon" src="images/money.svg"></div>')
         $('.comparison').append('<div class="money"></div>')
         $('.comparison').append('<div class="alcohol"></div>')
         $('.comparison').append('<div class="food"></div>')
@@ -82,17 +86,17 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
         $('.money').append('<h3> Exchange rates are cool but based on some crazy data collecting and intense algorithms we can tell you how much 100'+countryFrom.currency+' will be worth in '+countryTo.country+'</h3>')
         $('.alcohol').append('<h2>100 '+countryFrom.currency+'</h2>')
         $('.alcohol').append('<img class="icon" src="images/drink.svg" alt="capital">')
-        $('.alcohol').append('<h2>' +alcohol+ '</h2>')
+        $('.alcohol').append('<h2>' +alcohol+' ' +countryFrom.currency+ '</h2>')
         $('.food').append('<h2>100 '+countryFrom.currency+'</h2>')
         $('.food').append('<img class="icon" src="images/food.svg" alt="capital">')
-        $('.food').append('<h2>' +food+ '</h2>')
+        $('.food').append('<h2>' +food+' ' +countryFrom.currency+ '</h2>')
         $('.hotels').append('<h2>100 '+countryFrom.currency+'</h2>')
         $('.hotels').append('<img class="icon" src="images/hotel.svg" alt="capital">')
-        $('.hotels').append('<h2>' +hotels+ '</h2>')
+        $('.hotels').append('<h2>' +hotels+ ' ' +countryFrom.currency+'</h2>')
       }
   })
 
-//GENERAL country information - country name - official name - capital - subregion
+//GENERAL COUNTRY INFORMATION - country name - official name - capital - subregion
   $.get('https://restcountries.eu/rest/v1/alpha/'+countryTo.A2, function(general) {
 
     var lastElement = general.altSpellings.length - 1;
@@ -120,12 +124,17 @@ var tuGroup = {
 }
 $.ajax(tuGroup).done(function (safety) {
   var regional = safety.advisories.regionalAdvisories;
-console.log(safety.advisoryState)
+  // Turn off Loading and Display Main
+  $('#loading').hide()
+  $('main').show()
+
   $('.safety').append('<div><img class="big-icon" src="images/safety.svg"></div>')
   $('.safety').append('<div class="sAdvisory"></div>')
   $('.sAdvisory').append('<h3> Safety Advisory</h3>')
   $('.sAdvisory').append('<p>'+safety.advisories.description+'</p>')
-// Depending on warning level makes background red or green.
+  $('.safety').append('<div></div>')
+
+// RED OR GREEN BACKGROUND
   if (safety.advisoryState > 0) {
     $('.safety').css('background-color', '#D46A6A')
   } else if (safety.advisoryState === 0) {
@@ -135,7 +144,13 @@ console.log(safety.advisoryState)
     $('.sAdvisory').append('<h4>' +item.category+ '</h4>')
     $('.sAdvisory').append('<p>' +item.description+ '</p>')
     })
+  }).fail(function(error) {
+    $('.safety').append('<div><img class="big-icon" src="images/safety.svg"></div>')
+    $('.safety').append('<h3> No travel advisory data avaialable for '+countryTo.name+'</h3>')
+    $('#loading').hide()
+    $('main').show()
   })
+
 
   //PICTURES SECTION - FlickrAPI - Requesting pictures based on keyword relevancy
 $.get('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=6046bd3b0b0209c90dcfb95e499d4248&text='+countryTo.country+'%2C+architecture%2C+landscape&sort=relevance&accuracy=3&format=json&nojsoncallback=1', function(result){
@@ -144,8 +159,8 @@ $.get('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key
   $('.pictures').append('<div><img class="big-icon" src="images/camera.svg" alt="camera">')
   $('.pictures').append('<div class=pics></div>')
   $('.pics').append('<img src=https://farm'+pics[0].farm+'.staticflickr.com/'+pics[0].server+'/'+pics[0].id+'_'+pics[0].secret+'.jpg</img>')
-  $('.pics').append('<img src=https://farm'+pics[1].farm+'.staticflickr.com/'+pics[1].server+'/'+pics[1].id+'_'+pics[1].secret+'.jpg</img>')
-  $('.pics').append('<img src=https://farm'+pics[2].farm+'.staticflickr.com/'+pics[2].server+'/'+pics[2].id+'_'+pics[2].secret+'.jpg</img>')
+  $('.pics').append('<img src=https://farm'+pics[10].farm+'.staticflickr.com/'+pics[10].server+'/'+pics[10].id+'_'+pics[10].secret+'.jpg</img>')
+  $('.pics').append('<img src=https://farm'+pics[20].farm+'.staticflickr.com/'+pics[20].server+'/'+pics[20].id+'_'+pics[20].secret+'.jpg</img>')
 })
 
 })
