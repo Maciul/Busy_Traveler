@@ -1,0 +1,80 @@
+@import url(https://fonts.googleapis.com/css?family=Volkhov:400,700);
+@import url(https://fonts.googleapis.com/css?family=Almendra:400,700italic,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Martel+Sans);
+html {
+  font-size: 1em; }
+
+body {
+  background-color: white;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #333; }
+
+p {
+  margin-bottom: 1.3em; }
+
+h1 {
+  font-size: 3.998em; }
+
+h2 {
+  font-size: 2.827em; }
+
+h3 {
+  font-size: 1.999em; }
+
+h4 {
+  font-size: 1.414em; }
+
+small, .font_small {
+  font-size: 0.707em; }
+
+header {
+  background-color: lightblue;
+  margin-bottom: 20px; }
+  header form {
+    display: inline-block; }
+    header form select {
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px; }
+    header form label {
+      display: block; }
+
+body {
+  font-size: 100%;
+  font-family: 'Martel Sans', sans-serif;
+  width: 100%; }
+  body h1, body h2, body h5, body h6 {
+    font-family: 'Volkhov', serif; }
+  body h3, body h4 {
+    font-family: 'Almendra', serif; }
+  body section {
+    margin-bottom: 10px; }
+  body .general div {
+    text-align: center; }
+  body .general div h1 img {
+    width: 10%;
+    height: 30%; }
+  body .extra {
+    display: flex;
+    justify-content: space-around; }
+    body .extra div {
+      display: flex; }
+    body .extra img {
+      align-self: center;
+      padding: 10px;
+      height: 60px;
+      width: 60px; }
+  body .pics {
+    display: flex;
+    justify-content: space-around; }
+    body .pics img {
+      max-width: 33%;
+      border: 1px solid grey;
+      padding: 5px; }
+  body .alcohol {
+    display: flex;
+    justify-content: space-around; }
+    body .alcohol img {
+      height: 60px;
+      width: 60px; }
+    body .alcohol h2 {
+      margin: auto; }

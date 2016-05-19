@@ -1,0 +1,72 @@
+header {
+  background-color: lightblue;
+  margin-bottom: 20px;
+  form {
+    display: inline-block;
+
+    select {
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    }
+    label {
+      display: block;
+    }
+  }
+}
+body {
+  font-size: 100%;
+  font-family: 'Martel Sans', sans-serif;
+  width: 100%;
+
+  h1, h2, h5, h6 {
+  font-family: 'Volkhov', serif;
+  }
+  h3, h4 {
+    font-family: 'Almendra', serif;
+  }
+  section {
+    margin-bottom: 10px;
+  }
+
+  .general {
+    div {
+      text-align: center;
+    }
+    div h1 img {
+      width: 10%;
+      height: 30%;
+    }
+  }
+  .extra{
+    display: flex;
+    justify-content: space-around;
+    div {
+      display: flex;
+    }
+    img {
+      align-self: center;
+      padding: 10px;
+      height: 60px;
+      width: 60px;
+    }
+  }
+  .pics {
+    display: flex;
+    justify-content: space-around;
+    img {
+      max-width: 33%;
+      border: 1px solid grey;
+      padding: 5px;
+    }
+  }
+  .alcohol {
+    display: flex;
+    justify-content: space-around;
+    img {
+      height: 60px;
+      width: 60px;
+    }
+    h2 {
+      margin: auto;
+    }
+  }
+}
