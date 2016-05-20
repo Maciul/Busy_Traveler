@@ -58,7 +58,7 @@ header {
   width: 60px; }
 
 section {
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   border-bottom: 2px solid black; }
 
@@ -106,7 +106,7 @@ main {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center; }
+    justify-content: space-between; }
   main .comparison {
     text-align: center;
     display: flex;

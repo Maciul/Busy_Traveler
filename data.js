@@ -24,15 +24,15 @@ $('button').click(function(event) {
 // Getting values for calling different API's //
 $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+specific2+'' ),
         $.ajax('https://knoema.com/api/1.0/meta/dataset/ICPR2011/dimension/region' ) ).done(function(data, region) {
-// Get the country a2 code and currency //
 
+// A2 CODE and CURRENCY //
   countryTo.A2 = data[0][0].alpha2Code;
   countryTo.currency = data[0][0].currencies[0];
   countryTo.country = data[0][0].name
   countryFrom.A2 = data[0][1].alpha2Code;
   countryFrom.currency = data[0][1].currencies[0];
 
-// Get the 7-digit code based on specific countries picked //
+// 7 DIGIT CODE code based on specific countries picked //
    region[0].items.forEach(function(item, index) {
     if (item.fields.regionid === specific) {
       countryTo.id = item.key;
@@ -44,24 +44,24 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
 
 // CURRENCY CALCULATOR - With if statements to prevent undefined -----
   $.get('https://api.fixer.io/latest?base='+countryFrom.currency+'&symbols='+countryTo.currency+'').done(function(currency) {
+      var exchange = $('.exchange');
+      exchange.append('<div class="rate"></div>')
+      exchange.append('<div></div>')
+      var rate = $('.rate');
 
     if (countryFrom.currency === countryTo.currency) {
-      $('.exchange').append('<div><img class="big-icon" src=images/exchange.svg></div>')
-      $('.exchange').append('<div class="rate"></div>')
-      $('.rate').append('<h3>Both countries have the same currency! No need to exchange!!!</h3>')
+      exchange.prepend('<div><img class="big-icon" src=images/exchange.svg></div>')
+      rate.append('<h3>Both countries have the same currency! No need to exchange!!!</h3>')
     } else if (currency.rates[countryTo.currency] === undefined){
-      $('.exchange').append('<div><img class="big-icon" src=images/exchange.svg></div>')
-      $('.exchange').append('<div class="rate"></div>')
-      $('.rate').append('<h3>Sorry, no information on that exchange rate you can find the exchange rate <a href="http://www.xe.com/currencyconverter/">HERE</a></h3>')
+      exchange.prepend('<div><img class="big-icon" src=images/exchange.svg></div>')
+      rate.append('<h3>Sorry, no information on that exchange rate you can find the exchange rate <a href="http://www.xe.com/currencyconverter/">HERE</a></h3>')
     } else {
-      $('.exchange').append('<div><img class="big-icon" src=images/exchange.svg></div>')
-      $('.exchange').append('<div class="rate"></div>')
-      $('.rate').append('<h3>1 '+countryFrom.currency+' will get you ' +currency.rates[countryTo.currency]+' '+countryTo.currency+'<h3>')
+      exchange.prepend('<div><img class="big-icon" src=images/exchange.svg></div>')
+      rate.append('<h3>1 '+countryFrom.currency+' will get you ' +currency.rates[countryTo.currency]+' '+countryTo.currency+'<h3>')
     }
   }).fail(function(error) {
-    $('.exchange').append('<div><img class="big-icon" src=images/exchange.svg></div>')
-    $('.exchange').append('<div class="rate"></div>')
-    $('.rate').append('<h3>Relax, you did not brake the converter... We just do not have this data currently. You can go <a href="http://www.xe.com/currencyconverter/">HERE</a></h3> ')
+    exchange.prepend('<div><img class="big-icon" src=images/exchange.svg></div>')
+    rate.append('<h3>Relax, you did not brake the converter... We just do not have this data currently. You can go <a href="http://www.xe.com/currencyconverter/">HERE</a></h3> ')
 })
 // FINANCIAL Purchasing power parity stats -- will display as $100 is worth x amount??
   $.get('https://knoema.com/api/1.0/data/ICPR2011?Time=2011-2011&region='
@@ -73,12 +73,13 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
         $('.comparison').append('<div class="money"></div>')
         $('.money').append('<h3> Exchange rates are cool but based on some crazy data collecting and intense algorithms we can tell you how much 100'+countryFrom.currency+' will be worth in '+countryTo.country+'</h3>')
         $('.money').append('<p>Or not.... received insufficient data from WORLD BANK to make this happen!!!</p>')
+        $('.comparison').append('<div></div>')
       } else {
         var alcohol = Math.round(100 / (1 - ((PPP[0].Value - PPP[3].Value) / PPP[0].Value)))
         var food =    Math.round(100 / (1 - ((PPP[1].Value - PPP[4].Value) / PPP[1].Value)));
         var hotels =  Math.round(100 / (1 - ((PPP[2].Value - PPP[5].Value) / PPP[2].Value)));
 
-        $('.comparison').append('<div><img class="icon" src="images/money.svg"></div>')
+        $('.comparison').append('<div><img class="big-icon" src="images/money.svg"></div>')
         $('.comparison').append('<div class="money"></div>')
         $('.comparison').append('<div class="alcohol"></div>')
         $('.comparison').append('<div class="food"></div>')
