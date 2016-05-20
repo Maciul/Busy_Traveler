@@ -46,7 +46,11 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
   $.get('https://api.fixer.io/latest?base='+countryFrom.currency+'&symbols='+countryTo.currency+'').done(function(currency) {
       var exchange = $('.exchange');
       exchange.append('<div class="rate"></div>')
-      exchange.append('<div></div>')
+      exchange.append('<div><p>Tip of the day: Use Credit and ATM Cards:You will\
+      almost always get the best interbank exchange rate when buying foreign currency\
+      with either ATM cards or credit cards, which will usually be 2 to 7 percent better\
+      than the rates you will get when exchanging cash or travelers checks. Try to use credit\
+       cards whenever possible for large purchases such as hotel bills, tickets and car rentals.</p></div>')
       var rate = $('.rate');
 
     if (countryFrom.currency === countryTo.currency) {
@@ -67,13 +71,16 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
   $.get('https://knoema.com/api/1.0/data/ICPR2011?Time=2011-2011&region='
   +countryFrom.id+','+countryTo.id+'&measures-components=1000270,1000260,1000360&economic-aggregates=1000190&Frequencies=A', function(financial) {
       var PPP = financial.data //Purchasing Power Parity //
-      console.log(PPP)
+
       if (PPP.length < 6) {
-        $('.comparison').append('<div><img class="icon" src="images/money.svg"></div>')
+        $('.comparison').append('<div><img class="big-icon" src="images/money.svg"></div>')
         $('.comparison').append('<div class="money"></div>')
-        $('.money').append('<h3> Exchange rates are cool but based on some crazy data collecting and intense algorithms we can tell you how much 100'+countryFrom.currency+' will be worth in '+countryTo.country+'</h3>')
-        $('.money').append('<p>Or not.... received insufficient data from WORLD BANK to make this happen!!!</p>')
-        $('.comparison').append('<div></div>')
+        $('.money').append('<h4> Exchange rates are cool but based on some crazy\
+         data collecting and intense algorithms we can tell you how much 100\
+         '+countryFrom.currency+' will be worth in '+countryTo.country+'</h4>')
+
+        $('.comparison').append('<div><p>OR NOT.... unfortunately received\
+         insufficient data from WORLD BANK to make this happen!!!</p></div>')
       } else {
         var alcohol = Math.round(100 / (1 - ((PPP[0].Value - PPP[3].Value) / PPP[0].Value)))
         var food =    Math.round(100 / (1 - ((PPP[1].Value - PPP[4].Value) / PPP[1].Value)));
@@ -109,9 +116,9 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
     $('.general').append('<div class="gOfficial"></div>')
     $('.gOfficial').append('<h2>'+general.altSpellings[lastElement]+'</h2>')
     $('.general').append('<div class="gExtra"></div>')
-    $('.gExtra').append('<div><img class="icon" src="images/star.svg" alt="star"><h2>'+general.capital+'</h2></div>')
-    $('.gExtra').append('<div><img class="icon" src="images/continent.svg" alt="continent"><h2>'+general.subregion+'</h2></div>')
-    $('.gExtra').append('<div><img class="icon" src="images/piggy.svg" alt="currency"><h2>'+general.currencies[0]+'</h2></div>')
+    $('.gExtra').append('<div><h2>'+general.subregion+'</h2><img class="icon" src="images/continent.svg" alt="continent"><h3>Region</h3></div>')
+    $('.gExtra').append('<div><h2>'+general.capital+'</h2><img class="icon" src="images/star.svg" alt="star"><h3>Capital City</h3></div>')
+    $('.gExtra').append('<div><h2>'+general.currencies[0]+'</h2><img class="icon" src="images/coins.svg" alt="currency"><h3>Currency</h3></div>')
     })
 
 
@@ -129,20 +136,20 @@ $.ajax(tuGroup).done(function (safety) {
   $('#loading').hide()
   $('main').show()
 
-  $('.safety').append('<div><img class="big-icon" src="images/safety.svg"></div>')
+  // $('.safety').append('<div><img class="big-icon" src="images/safety.svg"></div>')
   $('.safety').append('<div class="sAdvisory"></div>')
-  $('.sAdvisory').append('<h3> Safety Advisory</h3>')
+  $('.sAdvisory').append('<h2> Safety Advisory</h2>')
   $('.sAdvisory').append('<p>'+safety.advisories.description+'</p>')
   $('.safety').append('<div></div>')
 
 // RED OR GREEN BACKGROUND
   if (safety.advisoryState > 0) {
-    $('.safety').css('background-color', '#D46A6A')
+    $('.safety').prepend('<div><img class="big-icon" src="images/warningRed.svg"</div>')
   } else if (safety.advisoryState === 0) {
-    $('.safety').css('background-color', '#5B9632')
+    $('.safety').prepend('<div><img class="big-icon" src="images/warningGreen.svg"</div>')
   }
   regional.forEach(function(item, index){
-    $('.sAdvisory').append('<h4>' +item.category+ '</h4>')
+    $('.sAdvisory').append('<h3>' +item.category+ '</h3>')
     $('.sAdvisory').append('<p>' +item.description+ '</p>')
     })
   }).fail(function(error) {

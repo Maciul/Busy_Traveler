@@ -1,26 +1,57 @@
 @import url(https://fonts.googleapis.com/css?family=Volkhov:400,700);
 @import url(https://fonts.googleapis.com/css?family=Almendra:400,700italic,700,400italic);
 @import url(https://fonts.googleapis.com/css?family=Martel+Sans);
+html {
+  font-size: 1em; }
+
+body {
+  background-color: white;
+  font-family: Quicksand;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #333; }
+
+p {
+  font-family: 'Martel Sans', sans-serif; }
+
+h1, h2, h3, h4 {
+  font-weight: inherit;
+  line-height: 1.2; }
+
 h1 {
-  font-size: 4em;
-  margin: 0 0 0 0; }
+  margin-top: 0;
+  font-size: 3.157em; }
+
+h2 {
+  font-size: 2.369em; }
+
+h3 {
+  font-size: 1.777em; }
+
+h4 {
+  font-size: 1.333em; }
+
+small, .font_small {
+  font-size: 0.75em; }
 
 body {
   margin: 0px; }
 
-h1, h2 {
-  font-family: 'Almendra', serif; }
-
-h3, h4, h5, h6 {
-  font-family: 'Volkhov', serif; }
-
 header {
   height: 100%;
   display: flex;
+  text-align: center;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 40px;
-  background-image: url(images/world.gif); }
+  background-image: url(http://stmedia.startribune.com/images/ows_138809003453231.jpg);
+  background-size: cover;
+  background-position: bottom; }
+  header h1 {
+    color: #fdffcc;
+    margin: 0px;
+    margin-top: 15px; }
+  header p {
+    color: #fdffcc; }
   header #loading {
     display: none; }
   header .styledForm select {
@@ -39,19 +70,19 @@ header {
     font-family: Georgia;
     color: #ffffff;
     font-size: 25px;
-    background: #0ceb5a;
+    background: #b899ff;
     padding: 20px 40px 20px 40px;
-    border: solid #000000 2px;
+    border: solid white 2px;
     text-decoration: none;
     transition: all 0.3s; }
     header .styledForm button:hover {
-      background: #df0;
-      text-decoration: none;
-      color: black; }
+      background: #ff0ffb;
+      color: #fdffcc;
+      text-decoration: none; }
 
 .big-icon {
-  height: 120px;
-  width: 120px; }
+  height: 140px;
+  width: 140px; }
 
 .icon {
   height: 60px;
@@ -60,7 +91,7 @@ header {
 section {
   min-height: 100%;
   width: 100%;
-  border-bottom: 2px solid black; }
+  border-bottom: 1px dashed #777e7e; }
 
 .general {
   display: flex;
@@ -70,6 +101,7 @@ section {
   margin-top: 40px; }
 
 main {
+  background-color: #e0fdff;
   display: none;
   display: flex;
   flex-direction: column; }
@@ -85,9 +117,9 @@ main {
     margin-top: 30px; }
   main .rate {
     width: 60%;
-    border: 2px solid black;
-    color: black;
-    background-color: gold;
+    border: 1px solid #fdffcc;
+    color: #fdffcc;
+    background-color: #b899ff;
     margin: 0 auto; }
   main .pictures {
     text-align: center;
@@ -126,7 +158,8 @@ main {
     display: flex;
     justify-content: space-around;
     border: 1px solid black;
-    padding-top: 5px; }
+    padding-top: 5px;
+    align-items: center; }
   main .safety {
     text-align: center;
     display: flex;
@@ -134,7 +167,7 @@ main {
     justify-content: space-between; }
     main .safety p {
       width: 60%;
-      text-align: center;
+      text-align: left;
       margin: 0 auto; }
   main .money {
     width: 60%;

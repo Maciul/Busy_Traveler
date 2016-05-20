@@ -1,21 +1,23 @@
 body {
   margin: 0px;
 }
-
-h1, h2 { font-family: 'Almendra', serif;
-}
-h3, h4, h5, h6 {
-  font-family: 'Volkhov', serif;
-}
-
 header {
   height: 100%;
   display: flex;
+  text-align: center;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 40px;
-  background-image: url(images/world.gif);
-
+  background-image: url(http://stmedia.startribune.com/images/ows_138809003453231.jpg);
+  background-size: cover;
+  background-position: bottom;
+  h1 {
+    color: hsla(62, 100%, 90%, 1);
+    margin: 0px;
+    margin-top: 15px;
+  }
+  p {
+    color: hsla(62, 100%, 90%, 1);
+  }
 
   #loading {
     display:none;
@@ -41,22 +43,22 @@ header {
       font-family: Georgia;
       color: #ffffff;
       font-size: 25px;
-      background: #0ceb5a;
+      background: hsla(258, 100%, 80%, 1);
       padding: 20px 40px 20px 40px;
-      border: solid #000000 2px;
+      border: solid white 2px;
       text-decoration: none;
       transition: all 0.3s;
       &:hover {
-        background: #df0;
+        background: hsla(301, 100%, 53%, 1);
+        color: hsla(62, 100%, 90%, 1);
         text-decoration: none;
-        color: black;
       }
     }
   }
 }
 .big-icon {
-  height: 120px;
-  width: 120px;
+  height: 140px;
+  width: 140px;
 }
 .icon {
   height: 60px;
@@ -65,7 +67,8 @@ header {
 section {
   min-height: 100%;
   width: 100%;
-  border-bottom: 2px solid black;
+  border-bottom: 1px dashed hsla(183, 3%, 48%, 1);
+
 }
 
 .general {
@@ -76,6 +79,7 @@ section {
   margin-top: 40px;
 }
 main {
+  background-color: hsla(183, 100%, 94%, 1);
   display: none;
   display: flex;
   flex-direction: column;
@@ -95,9 +99,9 @@ main {
   }
   .rate {
     width: 60%;
-    border: 2px solid black;
-    color: black;
-    background-color: gold;
+    border: 1px solid hsla(62, 100%, 90%, 1);;
+    color: hsla(62, 100%, 90%, 1);
+    background-color: hsla(258, 100%, 80%, 1);
     margin: 0 auto;
 
   }
@@ -146,6 +150,7 @@ main {
     justify-content: space-around;
     border: 1px solid black;
     padding-top: 5px;
+    align-items: center;
   }
   .safety {
     text-align: center;
@@ -154,7 +159,7 @@ main {
     justify-content: space-between;;
     p {
       width: 60%;
-      text-align: center;
+      text-align: left;
       margin: 0 auto;
     }
   }
