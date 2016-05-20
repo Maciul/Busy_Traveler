@@ -45,8 +45,9 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
 // CURRENCY CALCULATOR - With if statements to prevent undefined -----
   $.get('https://api.fixer.io/latest?base='+countryFrom.currency+'&symbols='+countryTo.currency+'').done(function(currency) {
       var exchange = $('.exchange');
+
       exchange.append('<div class="rate"></div>')
-      exchange.append('<div><p>Tip of the day: Use Credit and ATM Cards:You will\
+      exchange.append('<div class="tip"><p>Tip of the day: Use Credit and ATM Cards:You will\
       almost always get the best interbank exchange rate when buying foreign currency\
       with either ATM cards or credit cards, which will usually be 2 to 7 percent better\
       than the rates you will get when exchanging cash or travelers checks. Try to use credit\
@@ -58,14 +59,15 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
       rate.append('<h3>Both countries have the same currency! No need to exchange!!!</h3>')
     } else if (currency.rates[countryTo.currency] === undefined){
       exchange.prepend('<div><img class="big-icon" src=images/exchange.svg></div>')
-      rate.append('<h3>Sorry, no information on that exchange rate you can find the exchange rate <a href="http://www.xe.com/currencyconverter/">HERE</a></h3>')
+      rate.append('<h3>Sorry, we do not have information about this specific exchange you can find all exchange rates <a href="http://www.xe.com/currencyconverter/">HERE</a></h3>')
     } else {
       exchange.prepend('<div><img class="big-icon" src=images/exchange.svg></div>')
       rate.append('<h3>1 '+countryFrom.currency+' will get you ' +currency.rates[countryTo.currency]+' '+countryTo.currency+'<h3>')
     }
   }).fail(function(error) {
-    exchange.prepend('<div><img class="big-icon" src=images/exchange.svg></div>')
-    rate.append('<h3>Relax, you did not brake the converter... We just do not have this data currently. You can go <a href="http://www.xe.com/currencyconverter/">HERE</a></h3> ')
+    $('.exchange').prepend('<div><img class="big-icon" src=images/exchange.svg></div>')
+    $('.exchange').append('<div class="rate"><h3>Relax, you did not brake the converter...\
+     We just do not have this data currently. You can go <a href="http://www.xe.com/currencyconverter/">HERE</a></h3></div> ')
 })
 // FINANCIAL Purchasing power parity stats -- will display as $100 is worth x amount??
   $.get('https://knoema.com/api/1.0/data/ICPR2011?Time=2011-2011&region='
@@ -73,7 +75,7 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
       var PPP = financial.data //Purchasing Power Parity //
 
       if (PPP.length < 6) {
-        $('.comparison').append('<div><img class="big-icon" src="images/money.svg"></div>')
+        $('.comparison').append('<div><img class="big-icon" src="images/human.svg"></div>')
         $('.comparison').append('<div class="money"></div>')
         $('.money').append('<h4> Exchange rates are cool but based on some crazy\
          data collecting and intense algorithms we can tell you how much 100\
@@ -108,10 +110,9 @@ $.when( $.ajax( 'https://restcountries.eu/rest/v1/alpha?codes='+specific+';'+spe
   $.get('https://restcountries.eu/rest/v1/alpha/'+countryTo.A2, function(general) {
 
     var lastElement = general.altSpellings.length - 1;
-    console.log(general)
     // $('.general').append('<img src="images/flag.svg" width="+40px+" height="40px+" alt="flag">')
     $('.general').append('<div class="gMain"></div>')
-    $('.gMain').append('<img class="icon" src="images/flag.svg" alt="flag">')
+    $('.gMain').append('<img class="icon" src="images/location.svg" alt="locator">')
     $('.gMain').append('<h1>'+general.name+'</h1>')
     $('.general').append('<div class="gOfficial"></div>')
     $('.gOfficial').append('<h2>'+general.altSpellings[lastElement]+'</h2>')
@@ -135,6 +136,9 @@ $.ajax(tuGroup).done(function (safety) {
   // Turn off Loading and Display Main
   $('#loading').hide()
   $('main').show()
+  $('html, body').animate({
+        scrollTop: $("#general").offset().top
+    }, 2000);
 
   // $('.safety').append('<div><img class="big-icon" src="images/safety.svg"></div>')
   $('.safety').append('<div class="sAdvisory"></div>')

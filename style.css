@@ -105,6 +105,9 @@ main {
   display: none;
   display: flex;
   flex-direction: column; }
+  main a {
+    color: #db5d1a;
+    text-decoration: none; }
   main p {
     font-family: 'Martel Sans', sans-serif; }
   main .gMain {
@@ -117,9 +120,11 @@ main {
     margin-top: 30px; }
   main .rate {
     width: 60%;
+    padding: 5px;
     border: 1px solid #fdffcc;
     color: #fdffcc;
-    background-color: #b899ff;
+    border-radius: 15px;
+    background-color: #39314A;
     margin: 0 auto; }
   main .pictures {
     text-align: center;
@@ -138,33 +143,35 @@ main {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; }
+    justify-content: space-around; }
   main .comparison {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; }
+    justify-content: space-around; }
   main .hotels {
     display: flex;
     justify-content: space-around;
-    border: 1px solid black;
-    padding-top: 5px; }
+    border-bottom: 1px dashed grey;
+    padding-top: 5px;
+    align-items: center; }
   main .food {
     display: flex;
     justify-content: space-around;
-    border: 1px solid black;
-    padding-top: 5px; }
+    border-bottom: 1px dashed grey;
+    padding-top: 5px;
+    align-items: center; }
   main .alcohol {
     display: flex;
     justify-content: space-around;
-    border: 1px solid black;
+    border-bottom: 1px dashed grey;
     padding-top: 5px;
     align-items: center; }
   main .safety {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; }
+    justify-content: space-around; }
     main .safety p {
       width: 60%;
       text-align: left;
@@ -173,3 +180,7 @@ main {
     width: 60%;
     margin: 0 auto;
     text-align: center; }
+  main .tip {
+    width: 60%;
+    text-align: left;
+    margin: 0 auto; }
