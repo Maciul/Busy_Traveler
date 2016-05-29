@@ -1,3 +1,5 @@
+/*jshint multistr: true */
+
 $(document).ready(function() {
 var countryTo = {};
 var countryFrom = {};
