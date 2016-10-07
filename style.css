@@ -136,11 +136,14 @@ main {
     width: 100%;
     display: flex;
     justify-content: space-around;
-    text-align: center; }
+    flex-wrap: wrap; }
     main .pics img {
-      min-width: 30%;
+      width: 30vw;
       border: 1px solid black;
       padding: 5px; }
+    @media (max-width: 400px) {
+      main .pics img {
+        width: 100vw; } }
   main .exchange {
     text-align: center;
     display: flex;
