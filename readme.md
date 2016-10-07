@@ -4,7 +4,7 @@
 
 Busy Traveler is a web app which uses multiple sources (APIs) to get information on your next travel destination.
 
-Apart from general country information it also provides comparative between the countries such as currency exchange, or actual money worth based on different categories.
+Apart from general country information it also provides comparative information between the countries such as currency exchange, or actual money worth based on different categories such as Hotels, Food, or Alcoholic Beverages.
 
 ### Technical Notes:
 
