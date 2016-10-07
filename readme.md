@@ -22,4 +22,4 @@ APIs:
 * Currency API  
 
 ### Deployed URL
-https://pawel-galvanize-q1project.firebaseapp.com/
+https://busy-traveler.firebaseapp.com
