@@ -138,15 +138,10 @@ var tuGroup = {
   "x-auth-api-key": "um59hvs6gx8z674reuqmtzna",
   }
 };
-$.ajax(tuGroup).done(function (safety) {
+$.ajax(tuGroup).done(function(safety) {
   var regional = safety.advisories.regionalAdvisories;
 
-// Turn off Loading and Display Main
-  $('#loading').hide();
-  $('main').show();
-  $('html, body').animate({
-        scrollTop: $("#general").offset().top
-    }, 2000);
+
 
   $('.safety').append('<div class="sAdvisory"></div>');
   $('.sAdvisory').append('<h2> Safety Advisory</h2>');
@@ -165,7 +160,7 @@ $.ajax(tuGroup).done(function (safety) {
   });
   }).fail(function(error) {
     $('.safety').append('<div><img class="big-icon" src="images/safety.svg"></div>');
-    $('.safety').append('<h3> No travel advisory data avaialable for '+countryTo.name+'</h3>');
+    $('.safety').append('<h3> No travel advisory data avaialable for '+countryTo.country+'</h3>');
     $('#loading').hide();
     $('main').show();
   });
@@ -173,6 +168,13 @@ $.ajax(tuGroup).done(function (safety) {
 //PICTURES SECTION - FlickrAPI - Requesting pictures based on keyword relevancy
 $.get('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=6046bd3b0b0209c90dcfb95e499d4248&text='+countryTo.country+'%2C+architecture%2C+landscape&sort=relevance&accuracy=3&format=json&nojsoncallback=1', function(result){
   var pics = result.photos.photo;
+
+// Turn off Loading and Display Main
+  $('#loading').hide();
+  $('main').show();
+  $('html, body').animate({
+        scrollTop: $("#general").offset().top
+    }, 2000);
 
   $('.pictures').append('<div><img class="big-icon" src="images/camera.svg" alt="camera">');
   $('.pictures').append('<div class=pics></div>');
