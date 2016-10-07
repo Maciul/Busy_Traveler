@@ -12,7 +12,9 @@ Busy Traveler is a client side app.
 
 Technologies Used:
 * Front-End: JavaScript, jQuery, AJAX, HTML, CSS.
+
 APIs:
+
 * FlickrAPI
 * RestCountries API
 * knoema API
